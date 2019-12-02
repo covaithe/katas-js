@@ -17,6 +17,8 @@
     "jest-extended": "^0.11.2"
   },
   "jest": {
-    "setupFilesAfterEnv": ["jest-extended"]
+    "setupFilesAfterEnv": [
+      "jest-extended"
+    ]
   }
 }

@@ -21,7 +21,7 @@ describe('word search', () => {
       O,J,Y,E,U,L,N,C,C,L,Y,B,Z,U,H
       W,Z,M,I,S,U,K,U,R,B,I,D,U,X,S
       K,Y,L,B,Q,Q,P,M,D,F,C,K,E,A,B`)
-      
+
     const expectedOutput = dedent(`
       BONES: (0,6),(0,7),(0,8),(0,9),(0,10)
       KHAN: (5,9),(5,8),(5,7),(5,6)
@@ -30,8 +30,64 @@ describe('word search', () => {
       SPOCK: (2,1),(3,2),(4,3),(5,4),(6,5)
       SULU: (3,3),(2,2),(1,1),(0,0)
       UHURA: (4,0),(3,1),(2,2),(1,3),(0,4)`)
-    
+
     expect(Puzzle.findAll(input)).toEqual(expectedOutput)
   })
-  
+
+  const toWord = (path) => path.toWord()
+
+  describe('Puzzle', () => {
+    it('should find its cells', () => {
+      const puzzle = new Puzzle(dedent(`
+        a,b
+        c,d
+      `))
+      expect(puzzle.cells).toEqual([
+        new Cell('a', 0, 0),
+        new Cell('b', 1, 0),
+        new Cell('c', 0, 1),
+        new Cell('d', 1, 1),
+      ])
+    })
+
+    it('should find candidates in all directions', () => {
+      const puzzle = new Puzzle(dedent(`
+        1,2,3
+        4,c,5
+        6,7,8
+      `))
+      expect(puzzle.candidatesFor('cx').map(toWord)).toEqual([
+        'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8'
+      ])
+    })
+
+    it('should not include candidates that fall off the edge', () => {
+      const puzzle = new Puzzle('a,b')
+      expect(puzzle.candidatesFor('ab').map(toWord)).toEqual(['ab'])
+    })
+
+    it('should find candidates from all matching starts', () => {
+      const puzzle = new Puzzle(dedent(`
+        a,1
+        x,x
+        a,2
+      `))
+      expect(puzzle.candidatesFor('ax').map(toWord)).toContain('a1', 'a2')
+    })
+
+    it('should find candidates of the right length', () => {
+      const puzzle = new Puzzle('a,b,c,d')
+      expect(puzzle.candidatesFor('abc').map(toWord)).toEqual(['abc'])
+    })
+
+    it('find should return the the location of the first matching candidate', () => {
+      const puzzle = new Puzzle(dedent(`
+        a,1
+        b,x
+        a,2
+      `))
+      expect(puzzle.find('ax')).toEqual('(0,0),(1,1)')
+    })
+  })
+
 })

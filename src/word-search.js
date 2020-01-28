@@ -1,9 +1,15 @@
 
+const createPuzzle = input => []
 
-module.exports.Puzzle = class Puzzle {
+const candidatesFor = () => {}
 
-  static findAll(input) {
-  }
+const find = () => {}
 
+const solve = input => {}
 
+module.exports = {
+  createPuzzle,
+  candidatesFor,
+  find,
+  solve,
 }

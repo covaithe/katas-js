@@ -1,5 +1,5 @@
 const dedent = require('dedent-js')
-const { Puzzle, Cell } = require('./word-search')
+const { createPuzzle, candidatesFor, find, solve } = require('./word-search')
 
 describe('word search', () => {
 
@@ -21,7 +21,7 @@ describe('word search', () => {
       O,J,Y,E,U,L,N,C,C,L,Y,B,Z,U,H
       W,Z,M,I,S,U,K,U,R,B,I,D,U,X,S
       K,Y,L,B,Q,Q,P,M,D,F,C,K,E,A,B`)
-      
+
     const expectedOutput = dedent(`
       BONES: (0,6),(0,7),(0,8),(0,9),(0,10)
       KHAN: (5,9),(5,8),(5,7),(5,6)
@@ -30,8 +30,8 @@ describe('word search', () => {
       SPOCK: (2,1),(3,2),(4,3),(5,4),(6,5)
       SULU: (3,3),(2,2),(1,1),(0,0)
       UHURA: (4,0),(3,1),(2,2),(1,3),(0,4)`)
-    
-    expect(Puzzle.findAll(input)).toEqual(expectedOutput)
+
+    expect(solve(input)).toEqual(expectedOutput)
   })
-  
+
 })

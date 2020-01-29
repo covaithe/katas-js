@@ -34,4 +34,61 @@ describe('word search', () => {
     expect(solve(input)).toEqual(expectedOutput)
   })
 
+  describe('createPuzzle', () => {
+    it('should have a list of cells with coordinates', () => {
+      const puzzle = createPuzzle(dedent(`
+        a,b
+        c,d
+      `))
+      expect(puzzle).toEqual([
+        { value: 'a', x: 0, y: 0 },
+        { value: 'b', x: 1, y: 0 },
+        { value: 'c', x: 0, y: 1 },
+        { value: 'd', x: 1, y: 1 },
+      ])
+    })
+  })
+
+  describe('candidatesFor', () => {
+    it('should produce candidates starting from all cells matching the words first char', () => {
+      const puzzle = createPuzzle(dedent(`
+        a,b
+        x,x
+        a,c
+      `))
+      const candidates = candidatesFor(puzzle, 'ad')
+      expect(candidates).toContainEqual({ word: 'ab', path: '(0,0),(1,0)'})
+      expect(candidates).toContainEqual({ word: 'ac', path: '(0,2),(1,2)'})
+    })
+
+    it('should build candidates the right length', () => {
+      const puzzle = createPuzzle('a,b,c,d')
+      const words = candidatesFor(puzzle, 'abc').map(c => c.word)
+      expect(words).toContain('abc')
+    })
+
+    it('should produce canddiates in all directions', () => {
+      const puzzle = createPuzzle(dedent(`
+        1,2,3
+        4,c,5
+        6,7,8
+      `))
+      const words = candidatesFor(puzzle, 'cx').map(c => c.word)
+      expect(words).toEqual([
+        'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8'
+      ])
+    })
+  })
+
+  describe('find', () => {
+    it('should return the first candidate whose word matches', () => {
+      const puzzle = createPuzzle(dedent(`
+        1,2,3
+        4,c,5
+        6,7,8
+      `))
+      expect(find(puzzle, 'c3')).toEqual({ word: 'c3', path: '(1,1),(2,0)'})
+    })
+  })
+
 })

@@ -35,20 +35,15 @@ const candidatesFor = (puzzle, word) => {
   const cellAt = (x,y) => puzzle.find(c => c.x === x && c.y === y)
   const chars = Array.from(word)
 
-  const look = (start, direction) => {
+  const look = ([start, direction]) => {
     const cells = chars.map((char,i) => cellAt(
       start.x + i*direction.x,
       start.y + i*direction.y
     ))
     return createCandidate(cells)
   }
-  const look2 = ([start, direction]) => look(start, direction)
 
-
-
-  return _.product(starts, directions).map(look2)
-  return starts.flatMap(start => directions.map(direction => look(start, direction)))
-  // return starts.map(look)
+  return _.product(starts, directions).map(look)
 }
 
 const find = (puzzle, word) => candidatesFor(puzzle, word).find(c => c.word === word)

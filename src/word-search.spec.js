@@ -3,7 +3,7 @@ const { createPuzzle, candidatesFor, find, solve } = require('./word-search')
 
 describe('word search', () => {
 
-  it('should find all the words in the sample puzzle', () => {
+  xit('should find all the words in the sample puzzle', () => {
     const input = dedent(`
       BONES,KHAN,KIRK,SCOTTY,SPOCK,SULU,UHURA
       U,M,K,H,U,L,K,I,N,V,J,O,C,W,E
@@ -32,6 +32,50 @@ describe('word search', () => {
       UHURA: (4,0),(3,1),(2,2),(1,3),(0,4)`)
 
     expect(solve(input)).toEqual(expectedOutput)
+  })
+
+  describe('createPuzzle', () => {
+    it('should be a list of cells with value and coordinates', () => {
+      const puzzle = createPuzzle(dedent(`
+        a,b
+        c,d
+      `))
+      expect(puzzle).toEqual([
+        { value: 'a', x: 0, y: 0 },
+        { value: 'b', x: 1, y: 0 },
+        { value: 'c', x: 0, y: 1 },
+        { value: 'd', x: 1, y: 1 },
+      ])
+    })
+  })
+
+  describe('candidatesFor', () => {
+    it('should produce candidates starting from all cells with the words first char', () => {
+      const puzzle = createPuzzle(dedent(`
+        a,b
+        x,x
+        a,c
+      `))
+      const candidates = candidatesFor(puzzle, 'ad')
+      expect(candidates).toContainEqual({ word: 'ab', path: '(0,0),(1,0)' })
+      expect(candidates).toContainEqual({ word: 'ac', path: '(0,2),(1,2)' })
+    })
+
+    it('should produce candidates of the right length', () => {
+      const puzzle = createPuzzle('a,b,c,d')
+      const words = candidatesFor(puzzle, 'abc').map(c => c.word)
+      expect(words).toContainEqual('abc')
+    })
+
+    it('should produce candidates in all directions', () => {
+      const puzzle = createPuzzle(dedent(`
+        1,2,3
+        4,c,5
+        6,7,8
+      `))
+      const words = candidatesFor(puzzle, 'cx').map(c => c.word)
+      expect(words).toEqual([ 'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8' ])
+    })
   })
 
 })

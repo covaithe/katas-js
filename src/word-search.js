@@ -7,10 +7,14 @@ const createPuzzle = input =>
 const toValue = cell => cell.value
 const toCoords = cell => `(${cell.x},${cell.y})`
 
-const createCandidate = cells => ({
-  word: cells.map(toValue).join(''),
-  path: cells.map(toCoords).join(',')
-})
+const createCandidate = cells => {
+  cells = cells.filter(Boolean)
+
+  return {
+    word: cells.map(toValue).join(''),
+    path: cells.map(toCoords).join(',')
+  }
+}
 
 const directions = [
   { x: -1, y: -1 },

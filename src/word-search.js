@@ -46,7 +46,7 @@ const candidatesFor = (puzzle, word) => {
   // return starts.map(look)
 }
 
-const find = () => {}
+const find = (puzzle, word) => candidatesFor(puzzle, word).find(c => c.word === word)
 
 const solve = input => {}
 

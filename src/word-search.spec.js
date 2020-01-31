@@ -78,4 +78,15 @@ describe('word search', () => {
     })
   })
 
+  describe('find', () => {
+    it('should return the first candidate whose word matches the requested word', () => {
+      const puzzle = createPuzzle(dedent(`
+        1,2,3
+        4,c,5
+        6,7,8
+      `))
+      expect(find(puzzle, 'c3')).toEqual({ word: 'c3', path: '(1,1),(2,0)'})
+    })
+  })
+
 })

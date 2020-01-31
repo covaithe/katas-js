@@ -24,13 +24,14 @@ const candidatesFor = (puzzle, word) => {
   const chars = Array.from(word)
 
   direction = directions[1]
-  const look = (start) => {
+  const look = ([start, direction]) => {
     const cells = chars.map((char,i) => cellAt(
       start.x + i*direction.x,
       start.y + i*direction.y
     ))
     return createCandidate(cells)
   }
+
 
   return starts.map(look)
 }

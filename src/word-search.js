@@ -1,3 +1,5 @@
+require('lodash.product')
+const _ = require('lodash')
 
 const createPuzzle = input =>
   input.split('\n')
@@ -40,8 +42,11 @@ const candidatesFor = (puzzle, word) => {
     ))
     return createCandidate(cells)
   }
+  const look2 = ([start, direction]) => look(start, direction)
 
 
+
+  return _.product(starts, directions).map(look2)
   return starts.flatMap(start => directions.map(direction => look(start, direction)))
   // return starts.map(look)
 }

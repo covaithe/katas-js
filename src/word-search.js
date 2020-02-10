@@ -6,8 +6,8 @@ const createPuzzle = input =>
 
 const createCandidate = cells => {
   return {
-    word: cells[0].value,
-    path: `(${cells[0].x},${cells[0].y})`
+    word: cells.map(c => c.value).join(''),
+    path: cells.map(c => `(${c.x},${c.y})`).join(',')
   }
 }
 const candidatesFor = (puzzle, word) => {

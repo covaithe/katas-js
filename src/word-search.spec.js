@@ -77,8 +77,19 @@ describe('word search', () => {
       expect(words).toEqual([
         'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8'
       ])
-
     })
   })
+
+  describe('find', () => {
+    it('should return the first matching candidate', () => {
+      const puzzle = createPuzzle(dedent(`
+        1,2,3
+        4,c,5
+        6,7,8
+      `))
+      expect(find(puzzle, 'c3')).toEqual({ word: 'c3', path: '(1,1),(0,2)'})
+    })
+  })
+
 
 })

@@ -29,8 +29,7 @@ const candidatesFor = (puzzle, word) => {
   }
 
 
-  const direction = directions[1]
-  return starts.map(look(direction))
+  return directions.flatMap(direction => starts.map(look(direction)))
 }
 
 const find = () => {}

@@ -51,7 +51,9 @@ const parse = input => {
 
 const _ = require('lodash')
 
-const solve = _.flow(parse, ([words, puzzle]) => words.map(word => `${word}: ${find(puzzle, word).path}`).join('\n'))
+const solve = _.flow(parse, ([words, puzzle]) =>
+  words.map(word => `${word}: ${find(puzzle, word).path}`)
+    .join('\n'))
 
 module.exports = {
   createPuzzle,

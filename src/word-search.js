@@ -42,11 +42,17 @@ const candidatesFor = (puzzle, word) => {
 const find = (puzzle, word) =>
   candidatesFor(puzzle, word).find(c => c.word === word)
 
+const parse = input => {
+  const [ head, ...body ] = input.split('\n')
+  return [ head.split(',')]
+}
+
 const solve = input => {}
 
 module.exports = {
   createPuzzle,
   candidatesFor,
   find,
+  parse,
   solve,
 }

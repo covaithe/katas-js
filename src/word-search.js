@@ -1,7 +1,7 @@
 
 const createPuzzle = input =>
   input.split("\n")
-    .map((line, y) => line.split(","))
+    .flatMap((line, y) => line.split(","))
 
 const candidatesFor = () => {}
 

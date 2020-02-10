@@ -87,7 +87,7 @@ describe('word search', () => {
         4,c,5
         6,7,8
       `))
-      expect(find(puzzle, 'c3')).toEqual({ word: 'c3', path: '(1,1),(0,2)'})
+      expect(find(puzzle, 'c3')).toEqual({ word: 'c3', path: '(1,1),(2,0)'})
     })
   })
 

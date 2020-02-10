@@ -67,6 +67,19 @@ describe('word search', () => {
       const words = candidatesFor(puzzle, 'abc').map(c => c.word)
       expect(words).toContainEqual('abc')
     })
+
+    it('should find candidates in all directions', () => {
+      const puzzle = createPuzzle(dedent(`
+        1,2,3
+        4,c,5
+        6,7,8
+      `))
+      const words = candidatesFor(puzzle, 'cx').map(c => c.word)
+      expect(words).toEqual([
+        'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8'
+      ])
+
+    })
   })
 
 })

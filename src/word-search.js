@@ -10,6 +10,7 @@ const createCandidate = cells => {
     path: cells.map(c => `(${c.x},${c.y})`).join(',')
   }
 }
+
 const candidatesFor = (puzzle, word) => {
   const starts = puzzle.filter(cell => cell.value === word[0])
   const chars = Array.from(word)

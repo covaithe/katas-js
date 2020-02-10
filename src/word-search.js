@@ -44,7 +44,9 @@ const find = (puzzle, word) =>
 
 const parse = input => {
   const [ head, ...body ] = input.split('\n')
-  return [ head.split(',')]
+  const words = head.split(',')
+  const puzzle = createPuzzle(body.join('\n'))
+  return [ words, puzzle ]
 }
 
 const solve = input => {}

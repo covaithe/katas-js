@@ -56,10 +56,9 @@ describe('word search', () => {
         x,x
         a,c
       `))
-      expect(candidatesFor(puzzle, 'ab')).toEqual([
-        { word: 'ab', path: '(0,0),(1,0)' },
-        { word: 'ac', path: '(0,2),(1,2)' },
-      ])
+      const candidates = candidatesFor(puzzle, 'ab')
+      expect(candidates).toContainEqual({ word: 'ab', path: '(0,0),(1,0)' })
+      expect(candidates).toContainEqual({ word: 'ac', path: '(0,2),(1,2)' })
     })
 
     it('should find candidates the right length', () => {

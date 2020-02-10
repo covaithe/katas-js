@@ -1,5 +1,6 @@
 
-const createPuzzle = input => []
+const createPuzzle = input =>
+  input.split("\n")
 
 const candidatesFor = () => {}
 

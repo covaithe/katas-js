@@ -61,6 +61,12 @@ describe('word search', () => {
         { word: 'ac', path: '(0,2),(1,2)' },
       ])
     })
+
+    it('should find candidates the right length', () => {
+      const puzzle = createPuzzle('a,b,c,d')
+      const words = candidatesFor(puzzle, 'abc').map(c => c.word)
+      expect(words).toContainEqual('abc')
+    })
   })
 
 })

@@ -27,7 +27,7 @@ describe('word search', () => {
     expect(puzzle[0]).toEqual({ value: 'U', x: 0, y: 0 })
   })
 
-  xit('should find all the words in the sample puzzle', () => {
+  it('should find all the words in the sample puzzle', () => {
 
     const expectedOutput = dedent(`
       BONES: (0,6),(0,7),(0,8),(0,9),(0,10)

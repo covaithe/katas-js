@@ -49,6 +49,8 @@ const parse = input => {
   return [ words, puzzle ]
 }
 
+const _ = require('lodash')
+
 const solve = input => {}
 
 module.exports = {

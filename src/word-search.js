@@ -11,20 +11,26 @@ const createCandidate = cells => {
   }
 }
 
+const directions = [
+  { x: -1, y: -1 },
+  { x:  1, y:  0 },
+]
 const candidatesFor = (puzzle, word) => {
   const starts = puzzle.filter(cell => cell.value === word[0])
   const chars = Array.from(word)
 
-  const look = start => {
+  const look = direction => start => {
     const cells = chars.map((c,i) => {
-      const x = start.x + i
-      const y = start.y
+      const x = start.x + i*direction.x
+      const y = start.y + i*direction.y
       return puzzle.find(c => c.x === x && c.y === y)
     })
     return createCandidate(cells)
   }
 
-  return starts.map(look)
+
+  const direction = directions[1]
+  return starts.map(look(direction))
 }
 
 const find = () => {}

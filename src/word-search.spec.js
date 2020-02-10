@@ -49,4 +49,18 @@ describe('word search', () => {
     })
   })
 
+  describe('candidatesFor', () => {
+    it('should find candidates starting at all cells with value matching word start', () => {
+      const puzzle = createPuzzle(dedent(`
+        a,b
+        x,x
+        a,c
+      `))
+      expect(candidatesFor(puzzle, 'ab')).toEqual([
+        { word: 'ab', path: '(0,0),(1,0)' },
+        { word: 'ac', path: '(0,2),(1,2)' },
+      ])
+    })
+  })
+
 })

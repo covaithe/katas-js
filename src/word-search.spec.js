@@ -34,4 +34,19 @@ describe('word search', () => {
     expect(solve(input)).toEqual(expectedOutput)
   })
 
+  describe('createPuzzle', () => {
+    it('should be a list of cells with value and coordinates', () => {
+      const puzzle = createPuzzle(dedent(`
+        a,b
+        c,d
+      `))
+      expect(puzzle).toEqual([
+        { value: 'a', x: 0, y: 0 },
+        { value: 'b', x: 1, y: 0 },
+        { value: 'c', x: 0, y: 1 },
+        { value: 'd', x: 1, y: 1 },
+      ])
+    })
+  })
+
 })

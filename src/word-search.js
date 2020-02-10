@@ -12,11 +12,14 @@ const createCandidate = cells => {
 }
 const candidatesFor = (puzzle, word) => {
   const starts = puzzle.filter(cell => cell.value === word[0])
+  const chars = Array.from(word)
   return starts.map(start => {
-    const cells = [
-      start,
-      puzzle.find(c => c.x === start.x+1 && c.y === start.y)
-    ]
+    const cells = chars.map((c,i) => {
+      const x = start.x + i
+      const y = start.y
+      return puzzle.find(c => c.x === x && c.y === y)
+    })
+
     return createCandidate(cells)
   })
 }

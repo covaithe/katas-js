@@ -5,6 +5,7 @@ const createPuzzle = input =>
       .map((value, x) => ({ value, x, y}) ))
 
 const createCandidate = cells => {
+  cells = cells.filter(Boolean)
   return {
     word: cells.map(c => c.value).join(''),
     path: cells.map(c => `(${c.x},${c.y})`).join(',')

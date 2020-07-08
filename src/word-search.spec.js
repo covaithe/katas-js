@@ -1,5 +1,5 @@
 const dedent = require('dedent-js')
-const { createPuzzle, candidatesFor, find, solve } = require('./word-search')
+const { createPuzzle, solve } = require('./word-search')
 
 describe('word search', () => {
 

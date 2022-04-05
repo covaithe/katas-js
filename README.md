@@ -1,11 +1,19 @@
 # katas-js
 
-This repo is for working on katas in javascript. It's set
-up to use jest, but there may be branches that use other
-setups.
+## Bowling Game
 
-Individual kata implementations live on branches, and will
-usually have some kind of description on the README.md of
-what I was thinking about when I did that particular
-implementation.
+This branch is for working on the bowling game kata. I'm taking the rules from here:
+https://kata-log.rocks/bowling-game-kata.
 
+To run the tests, do this:
+
+```
+npm install      # if necessary
+npx jest
+```
+
+## Implementation for <date>
+
+### Goals
+
+### Reflections

@@ -12,8 +12,21 @@ npm install      # if necessary
 npx jest
 ```
 
-## Implementation for <date>
+## Implementation for 2022-04-05
 
 ### Goals
 
+Initial implementation! let's go!!!
+
 ### Reflections
+
+- timebox is hard oof. need to set a timer!
+- this code is kinda bad. better names? methods?? ugh.
+- need to re-learn CJS modules
+- completely wrong about immutability. oops!
+- OO seems to be helping....
+- in the future, look for ways to do immutability + FP
+- probably remembering old implementations
+- better tests? maybe?
+- stick to OO for now...
+- hasFrameInProgress is tricky... Maybe test it directly?
